@@ -1,5 +1,8 @@
 class ArticlesController < ApplicationController
   def index
+    puts "🔗 Connected to DB Host: #{ActiveRecord::Base.connection_db_config.configuration_hash[:host]}"
+    puts '--------------------' + ActiveRecord::Base.connection.execute('SELECT version();').first['version']
+
     @articles = Article.all
   end
 
