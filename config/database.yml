@@ -78,9 +78,13 @@ test:
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
+production:
   primary: &primary_production
     <<: *default
-    url: <%= ENV['DATABASE_URL'] %>
+    # url: <%= ENV["DATABASE_URL"]%>
+    database: blog_production
+    username: blog
+    password: <%= ENV["BLOG_DATABASE_PASSWORD"] %>
   cache:
     <<: *primary_production
     database: blog_production_cache
@@ -93,4 +97,5 @@ test:
     <<: *primary_production
     database: blog_production_cable
     migrations_paths: db/cable_migrate
+
 
